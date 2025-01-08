@@ -6,10 +6,29 @@ project(
 	LANGUAGES C CXX
 )
 
+#
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+include(FetchContent)
+
+#setting a variable name for sfml
+set(SFML_LIB_NAME SFML)
+
+#fetches the sfml library and integrate into our solution
+FetchContent_Declare(
+	${SFML_LIB_NAME}
+	GIT_REPOSITORY https://github.com/SFML/SFML
+	GIT_TAG 2.5.1
+	GIT_SHALLOW FALSE
+)
+
+FetchContent_MakeAvailable(${SFML_LIB_NAME})
+
+#setting a variable name for Project name
 set(LIGHT_YEARS_GAME_TARGET_NAME LightYearsGame)
+add_subdirectory(LightYears)
+
 
 
