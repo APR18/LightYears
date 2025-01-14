@@ -1,5 +1,5 @@
-#include<iostream>
 #include "framework\Application.h"
+#include<framework/Core.h>
 namespace ly
 {
 	Application::Application()
@@ -16,9 +16,6 @@ namespace ly
 		float targetDeltaTime = 1.f / mTargetFrameRate;
 		while (mWindow.isOpen())
 		{
-
-
-
 			sf::Event windowEvent;
 			while (mWindow.pollEvent(windowEvent))
 			{
@@ -59,7 +56,7 @@ namespace ly
 	}
 	void Application::tick(float deltaTime)
 	{
-		std::cout << "Ticking at framerate: " << 1.f / deltaTime << std::endl;
+		LOG("Ticking at framerate: %f", 1.f / deltaTime);
 	}
 }
 
