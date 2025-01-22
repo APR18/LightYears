@@ -38,6 +38,11 @@ namespace ly
 	void Application::tickInternal(float deltaTime)
 	{
 		tick(deltaTime);
+		if (currentWorld)
+		{
+			currentWorld->beginPlayInternal();
+			currentWorld->tickInternal(deltaTime);
+		}
 	}
 
 	void Application::renderInternal()
