@@ -5,7 +5,8 @@ namespace ly
 	Application::Application()
 		:mWindow{sf::VideoMode(600,800), "Light Years"},
 		mTargetFrameRate{60.f},
-		mTickClock{}
+		mTickClock{},
+		currentWorld{nullptr}
 	{
 		
 	}
