@@ -2,13 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include"framework/Core.h"
 #include "framework/World.h"
+
 namespace ly
 {
 	class World;
 	class Application
 	{
 	public:
-		Application();
+		Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title,sf::Uint32 style);
 		void run();
 
 
@@ -18,10 +19,13 @@ namespace ly
 		template<typename WorldType>
 		weak<WorldType> loadWorld()
 		{
+			//creates a shared pointer named newWorld and passes a Application class reference to it
 			shared<WorldType> newWorld{ new WorldType{this} };
+			//sets the currentWorld of application class to the world that has been passed
 			currentWorld = newWorld;
 			return newWorld;
 		}
+
 	private:
 		sf::RenderWindow mWindow;
 		float mTargetFrameRate;

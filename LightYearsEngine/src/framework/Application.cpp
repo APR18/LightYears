@@ -2,13 +2,13 @@
 #include<framework/Core.h>
 namespace ly
 {
-	Application::Application()
-		:mWindow{sf::VideoMode(600,800), "Light Years"},
-		mTargetFrameRate{60.f},
+
+	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
+		:mWindow{ sf::VideoMode(windowWidth,windowHeight), title, style },
+		mTargetFrameRate{ 60.f },
 		mTickClock{},
-		currentWorld{nullptr}
+		currentWorld{ nullptr }
 	{
-		
 	}
 	void Application::run()
 	{
@@ -54,11 +54,10 @@ namespace ly
 	}
 	void Application::render()
 	{
-		sf::CircleShape circle{ 50 };
-		circle.setFillColor(sf::Color::Magenta);
-		circle.setOrigin(50, 50);
-		circle.setPosition(mWindow.getSize().x / 2, mWindow.getSize().y / 2);
-		mWindow.draw(circle);
+		if (currentWorld)
+		{
+			currentWorld->render(mWindow);
+		}
 	}
 	void Application::tick(float deltaTime)
 	{

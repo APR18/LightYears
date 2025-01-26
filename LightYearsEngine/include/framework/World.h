@@ -1,5 +1,6 @@
 #pragma once
 #include "framework/Core.h"
+#include <SFML/Graphics.hpp>
 namespace ly
 {
 	class Actor;
@@ -10,6 +11,7 @@ namespace ly
 		World(Application* owningApp);
 		void beginPlayInternal();
 		void tickInternal(float deltaTime);
+		void render(sf::RenderWindow& window);
 		virtual ~World();
 		
 /*This function creates a new actor and adds it to the mPending Actor list*/
@@ -20,6 +22,8 @@ namespace ly
 			mPendingActors.push_back(newActor);
 			return newActor;
 		}
+
+
 
 
 	private:

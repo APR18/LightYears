@@ -41,6 +41,15 @@ namespace ly
 
 		tick(deltaTime);
 	}
+
+	void World::render(sf::RenderWindow& window)
+	{
+		for (auto actor : mActors)
+		{
+			actor->render(window);
+		}
+	}
+
 	World::~World()
 	{
 	}
