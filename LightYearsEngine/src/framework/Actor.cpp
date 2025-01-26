@@ -7,6 +7,10 @@ namespace ly
 	{
 		
 	}
+	Actor::~Actor()
+	{
+		LOG("Actor Destroyed");
+	}
 	void Actor::beginPlayInternal()
 	{
 		if (!mBeganPlay)

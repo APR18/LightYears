@@ -15,6 +15,19 @@ namespace ly
 		This function creates a new actor and adds it to the mPending Actor list
 		*/
 		newWorld.lock()->spawnActor<Actor>();
+		actorToDestroy = newWorld.lock()->spawnActor<Actor>();
+		counter = 0;
+	}
+	void GameApplication::tick(float deltatime)
+	{
+		counter += deltatime;
+		if (counter > 2.f)
+		{
+			if (!actorToDestroy.expired())
+			{
+				actorToDestroy.lock()->destroy();
+			}
+		}
 	}
 }
 

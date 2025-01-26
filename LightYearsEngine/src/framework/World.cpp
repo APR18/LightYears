@@ -25,10 +25,20 @@ namespace ly
 		}
 		mPendingActors.clear();
 
-		for (shared<Actor> actor: mActors)
+		for (auto iter = mActors.begin(); iter != mActors.end();)
 		{
-			actor->tick(deltaTime);
+			// here get is used because iter is a shared pointer pointing to Actor so to dereference it we use get()
+			if (iter->get()->isPendingDestroy())
+			{
+				iter = mActors.erase(iter);
+			}
+			else
+			{
+				iter->get()->tick(deltaTime);
+				iter++;
+			}
 		}
+
 		tick(deltaTime);
 	}
 	World::~World()
