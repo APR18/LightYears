@@ -21,6 +21,6 @@ namespace ly
 		World* mOwningWorld;
 		bool mBeganPlay;
 		sf::Sprite mSprite;
-		sf::Texture mTexture;
+		shared<sf::Texture> mTexture;
 	};
 }

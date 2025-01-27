@@ -1,5 +1,5 @@
 #include "framework/Actor.h"
-
+#include "framework/AssetManager.h"
 namespace ly
 {
 	Actor::Actor(World* owningWorld, const std::string& texturePath ) :
@@ -36,11 +36,14 @@ namespace ly
 	}
 	void Actor::setTexture(const std::string& texturePath)
 	{
-		mTexture.loadFromFile(texturePath);
-		mSprite.setTexture(mTexture);
+		
+		mTexture = AssetManager::get().loadTexture(texturePath);
+		if (!mTexture) 
+			return;
+		mSprite.setTexture(*mTexture);
 
-		int textureWidth = mTexture.getSize().x;
-		int textureHeight = mTexture.getSize().y;
+		int textureWidth = mTexture->getSize().x;
+		int textureHeight = mTexture->getSize().y;
 		mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{},sf::Vector2i{textureWidth,textureHeight} });
 	}
 	void Actor::render(sf::RenderWindow& window)
