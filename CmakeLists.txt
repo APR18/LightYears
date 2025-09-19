@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.31.3)
+
+project(LightYears
+VERSION 1.0.0
+LANGUAGES C CXX
+)
+
+
+
+set(CMAKE_CXX_STANDARD			14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS		OFF)
+
+# This creates a variable so the value is firstTutorial and variable name is PROJECT_TARGET_NAME
+set(PROJECT_TARGET_NAME LightYearsGame)
+
+add_subdirectory(LightYearsGame)
