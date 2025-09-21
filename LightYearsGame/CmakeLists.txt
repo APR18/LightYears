@@ -1,5 +1,26 @@
 
 add_executable(${PROJECT_TARGET_NAME}
 ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/include/gameFramework/Application.h
+${CMAKE_CURRENT_SOURCE_DIR}/src/gameFramework/Application.cpp
 )
+target_include_directories(${PROJECT_TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+#syntax 
+#function(funtion_name parameter1 parameter2)
+function(CopyDllFromLibToTarget LIB_NAME TARGET_NAME)
+add_custom_command(
+	TARGET ${TARGET_NAME}
+	POST_BUILD
+	COMMAND
+	${CMAKE_COMMAND} -E copy_if_different
+	# TARGET FILE indicates the build file
+	$<TARGET_FILE:${LIB_NAME}>
+	$<TARGET_FILE_DIR:${TARGET_NAME}>
+)
+endfunction()
+
+COPYDLLFROMLIBTOTARGET(sfml-graphics ${PROJECT_TARGET_NAME})
+COPYDLLFROMLIBTOTARGET(sfml-system ${PROJECT_TARGET_NAME})
+COPYDLLFROMLIBTOTARGET(sfml-audio ${PROJECT_TARGET_NAME})
+COPYDLLFROMLIBTOTARGET(sfml-window ${PROJECT_TARGET_NAME})
