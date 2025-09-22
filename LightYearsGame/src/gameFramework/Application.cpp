@@ -1,11 +1,18 @@
+#include<iostream>
 #include "gameFramework/Application.h"
 namespace LightYears
 {
-	Application::Application():mWindow(sf::VideoMode(800,640),"LightYears")
+	Application::Application() :
+		mWindow(sf::VideoMode(800, 640), "LightYears"),
+		mTargetFrameRate(60.f),
+		mClock()
 	{ }
 
 	void Application::run()
 	{
+		mClock.restart();
+		float timePassedSinceLastUpdate = 0.f;
+		float targetDeltaTime = 1.f / mTargetFrameRate;
 		while (mWindow.isOpen())
 		{
 			sf::Event event;
@@ -16,6 +23,47 @@ namespace LightYears
 					mWindow.close();
 				}
 			}
+			float accumulatedTime = mClock.restart().asSeconds();
+			timePassedSinceLastUpdate += accumulatedTime;
+			while (timePassedSinceLastUpdate > targetDeltaTime)
+			{
+				timePassedSinceLastUpdate -= targetDeltaTime;
+				updateInternal(targetDeltaTime);
+				renderInternal();
+				
+			}
+
 		}
 	}
+
+	void Application::updateInternal(float deltaTime)
+	{
+		update(deltaTime);
+	}
+
+	void Application::update(float deltaTime)
+	{
+		std::cout << "Updating at framerate: " << 1.f/deltaTime <<std::endl;
+	}
+
+	void Application::renderInternal()
+	{
+		mWindow.clear();
+		render();
+		mWindow.display();
+	}
+
+	void Application::render()
+	{
+		
+		sf::CircleShape circle{ 50.f };
+		circle.setFillColor(sf::Color::Cyan);
+		circle.setOrigin(50, 50);
+		circle.setPosition(mWindow.getSize().x/2, mWindow.getSize().y/2);
+		mWindow.draw(circle);
+
+	}
+
+
+
 }
