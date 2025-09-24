@@ -12,9 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS		OFF)
 
 # This creates a variable so the value is firstTutorial and variable name is PROJECT_TARGET_NAME
-set(PROJECT_TARGET_NAME LightYearsGame)
-
-add_subdirectory(LightYearsGame)
 
 include(FetchContent)
 
@@ -27,8 +24,10 @@ GIT_SHALLOW FALSE
 )
 
 FetchContent_MakeAvailable(${SFML_LIB})
+set(PROJECT_TARGET_NAME LightYearsGame)
+set(PROJECT_ENGINE_TARGET_NAME LightYearsEngine)
 
-target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-graphics)
-target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-system)
-target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-window)
-target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-audio)
+add_subdirectory(LightYearsEngine)
+add_subdirectory(LightYearsGame)
+    
+

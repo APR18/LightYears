@@ -1,0 +1,33 @@
+
+add_library(${PROJECT_ENGINE_TARGET_NAME} STATIC
+${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Application.h
+${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Application.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/include/Entrypoint.h
+${CMAKE_CURRENT_SOURCE_DIR}/src/Entrypoint.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
+${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
+)
+target_include_directories(${PROJECT_ENGINE_TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-graphics)
+target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-system)
+target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-window)
+target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-audio)
+#syntax 
+#function(funtion_name parameter1 parameter2)
+function(CopyDllFromLibToTarget LIB_NAME TARGET_NAME)
+add_custom_command(
+	TARGET ${TARGET_NAME}
+	POST_BUILD
+	COMMAND
+	${CMAKE_COMMAND} -E copy_if_different
+	# TARGET FILE indicates the build file
+	$<TARGET_FILE:${LIB_NAME}>
+	$<TARGET_FILE_DIR:${TARGET_NAME}>
+)
+endfunction()
+
+COPYDLLFROMLIBTOTARGET(sfml-graphics ${PROJECT_ENGINE_TARGET_NAME})
+COPYDLLFROMLIBTOTARGET(sfml-system ${PROJECT_ENGINE_TARGET_NAME})
+COPYDLLFROMLIBTOTARGET(sfml-audio ${PROJECT_ENGINE_TARGET_NAME})
+COPYDLLFROMLIBTOTARGET(sfml-window ${PROJECT_ENGINE_TARGET_NAME})

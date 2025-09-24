@@ -1,5 +1,6 @@
-#include<iostream>
-#include "gameFramework/Application.h"
+
+#include "framework/Application.h"
+#include"framework/Core.h"
 namespace LightYears
 {
 	Application::Application() :
@@ -32,6 +33,9 @@ namespace LightYears
 				renderInternal();
 				
 			}
+			
+			//printf("Updateing at framerate: %f\n", 1.f / accumulatedTime);
+			LOG("Updateing at framerate: %f\n", 1.f / accumulatedTime);
 
 		}
 	}
@@ -43,7 +47,7 @@ namespace LightYears
 
 	void Application::update(float deltaTime)
 	{
-		std::cout << "Updating at framerate: " << 1.f/deltaTime <<std::endl;
+		//std::cout << "Updating at framerate: " << 1.f/deltaTime <<std::endl;
 	}
 
 	void Application::renderInternal()
