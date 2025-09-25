@@ -4,6 +4,7 @@ namespace LightYears
 {
 	class GameApplication : public Application
 	{
-
+	public:
+		GameApplication();
 	};
 }

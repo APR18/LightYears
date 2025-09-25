@@ -1,12 +1,14 @@
 
 #include "framework/Application.h"
 #include"framework/Core.h"
+#include"framework/Level.h"
 namespace LightYears
 {
 	Application::Application() :
 		mWindow(sf::VideoMode(800, 640), "LightYears"),
 		mTargetFrameRate(60.f),
-		mClock()
+		mClock(),
+		mCurrentLevel(nullptr)
 	{ }
 
 	void Application::run()
@@ -35,7 +37,7 @@ namespace LightYears
 			}
 			
 			//printf("Updateing at framerate: %f\n", 1.f / accumulatedTime);
-			LOG("Updateing at framerate: %f\n", 1.f / accumulatedTime);
+			//LOG("Updateing at framerate: %f\n", 1.f / accumulatedTime);
 
 		}
 	}
@@ -43,6 +45,12 @@ namespace LightYears
 	void Application::updateInternal(float deltaTime)
 	{
 		update(deltaTime);
+		if (mCurrentLevel)
+		{
+			mCurrentLevel->beginPlayInternal();
+			mCurrentLevel->updateInternal(deltaTime);
+		}
+
 	}
 
 	void Application::update(float deltaTime)
