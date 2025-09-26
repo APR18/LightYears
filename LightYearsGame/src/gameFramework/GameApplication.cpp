@@ -1,5 +1,6 @@
 #include "gameFramework/GameApplication.h"
 #include "framework/Level.h"
+#include "framework/Actor.h"
 LightYears::Application* GetApplication()
 {
 	return new LightYears::GameApplication();
@@ -7,5 +8,6 @@ LightYears::Application* GetApplication()
 
 LightYears::GameApplication::GameApplication()
 {
-	loadLevel<Level>();
+	weak<Level> newWorld = loadLevel<Level>();
+	newWorld.lock()->spawnActor<Actor>();
 }

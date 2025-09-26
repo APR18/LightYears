@@ -1,9 +1,11 @@
 #include "framework/Level.h"
-#include "framework/Core.h"
+#include "framework/Actor.h"
 namespace LightYears
 {
 	Level::Level(Application* owningApp):
-		mOwningApp{owningApp},mBeginPlay{false}
+		mOwningApp{owningApp},mBeginPlay{false},
+		mPendingActors(),
+		mActors()
 	{
 
 	}
@@ -19,6 +21,20 @@ namespace LightYears
 
 	void Level::updateInternal(float deltaTime)
 	{
+		//transferring the actors from pending to actual actor list
+		for (shared<Actor> actor : mPendingActors)
+		{
+			mActors.push_back(actor);
+			actor->beginPlayInternal();
+		}
+		mPendingActors.clear();
+
+		// updating each actor
+		for (shared<Actor> actor : mActors)
+		{
+			actor->update(deltaTime);
+		}
+
 		update(deltaTime);
 	}
 

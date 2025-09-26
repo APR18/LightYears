@@ -8,6 +8,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Level.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Level.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Actor.h
+${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Actor.cpp
 )
 target_include_directories(${PROJECT_ENGINE_TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
