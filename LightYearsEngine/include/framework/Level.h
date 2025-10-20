@@ -1,7 +1,7 @@
 #ifndef LEVEL_HPP
 #define LEVEL_HPP
 #include "Core.h"
-
+#include<SFML/Graphics.hpp>
 namespace LightYears
 {
 	class Application;
@@ -12,9 +12,10 @@ namespace LightYears
 		Level(Application* owningApp);
 		void beginPlayInternal();
 		void updateInternal(float deltaTime);
-		 virtual  ~Level();
-		 template<typename ActorType>
-		 weak<ActorType> spawnActor();
+		void render(sf::RenderWindow& window);
+		virtual  ~Level();
+		template<typename ActorType>
+		weak<ActorType> spawnActor();
 
 	private:
 		Application* mOwningApp;

@@ -29,15 +29,27 @@ namespace LightYears
 		}
 		mPendingActors.clear();
 
-		// updating each actor
-		for (shared<Actor> actor : mActors)
+		// not incrementing here because the .erase returns the next iterator and in else we are incrementing it
+		for (auto iter = mActors.begin(); iter != mActors.end();)
 		{
-			actor->update(deltaTime);
+			if (iter->get()->isPendingDestroy())
+			{
+				iter = mActors.erase(iter);
+			}
+			else
+			{
+				iter->get()->updateInternal(deltaTime);
+				++iter;
+			}
 		}
 
 		update(deltaTime);
 	}
-
+	void Level::render(sf::RenderWindow& window)
+	{
+		for (auto& actor : mActors)
+			actor->render(window);
+	}
 	void Level::beginPlay()
 	{
 		LOG("Begin Play");

@@ -1,0 +1,13 @@
+#ifndef CONFIG_HPP
+#define CONFIG_HPP
+#include <string>
+std::string GetResourceFolder()
+{
+#ifdef NDEBUG //release
+	return "@RESOURCE_FOLDER_NAME@/";
+#else
+	return "@RESOURCE_SRC_DIR@/";
+#endif // !NDEBUG
+
+}
+#endif // !CONFIG_HPP

@@ -4,8 +4,8 @@
 #include"framework/Level.h"
 namespace LightYears
 {
-	Application::Application() :
-		mWindow(sf::VideoMode(800, 640), "LightYears"),
+	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style) :
+		mWindow(sf::VideoMode(windowWidth, windowHeight), title,style),
 		mTargetFrameRate(60.f),
 		mClock(),
 		mCurrentLevel(nullptr)
@@ -67,12 +67,8 @@ namespace LightYears
 
 	void Application::render()
 	{
-		
-		sf::CircleShape circle{ 50.f };
-		circle.setFillColor(sf::Color::Cyan);
-		circle.setOrigin(50, 50);
-		circle.setPosition(mWindow.getSize().x/2, mWindow.getSize().y/2);
-		mWindow.draw(circle);
+		if (mCurrentLevel)
+			mCurrentLevel->render(mWindow);
 
 	}
 

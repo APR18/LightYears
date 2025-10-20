@@ -2,13 +2,14 @@
 #define APPLICATION_HPP
 #include<SFML/Graphics.hpp>
 #include "framework/Core.h"
+#
 namespace LightYears
 {
 	class Level;
 	class Application
 	{
 	public:
-		Application();
+		Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style);
 		void run();
 		template<typename LevelType>
 		weak<LevelType> loadLevel();
