@@ -10,6 +10,7 @@ namespace LightYears
 	public:
 		static AssetManager& Get();
 		shared<sf::Texture> loadTexture(const std::string& filepath);
+		void cleanCycle();
 	protected:
 		AssetManager();
 	private:

@@ -8,7 +8,9 @@ namespace LightYears
 		mWindow(sf::VideoMode(windowWidth, windowHeight), title,style),
 		mTargetFrameRate(60.f),
 		mClock(),
-		mCurrentLevel(nullptr)
+		mCurrentLevel(nullptr),
+		mCleanCycleClock(),
+		mCleanCycleInterval(2.f)
 	{ }
 
 	void Application::run()
@@ -49,6 +51,11 @@ namespace LightYears
 		{
 			mCurrentLevel->beginPlayInternal();
 			mCurrentLevel->updateInternal(deltaTime);
+		}
+		if (mCleanCycleClock.getElapsedTime().asSeconds()>=mCleanCycleInterval)
+		{
+			mCleanCycleClock.restart();
+			AssetManager::Get().cleanCycle();
 		}
 
 	}

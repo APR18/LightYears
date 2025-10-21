@@ -28,7 +28,7 @@ namespace LightYears
 
 	void Actor::beginPlay()
 	{
-		LOG("Actor begin play");
+		
 	}
 	void Actor::updateInternal(float deltaTime)
 	{
@@ -39,7 +39,7 @@ namespace LightYears
 	}
 	void Actor::update(float deltaTime)
 	{
-		LOG("Actor Ticking now");
+		
 	}
 	void Actor::setTexture(const std::string& texturePath)
 	{

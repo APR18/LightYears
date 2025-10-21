@@ -31,6 +31,23 @@ namespace LightYears
 
 		return shared<sf::Texture>(nullptr);
 	}
+
+	void AssetManager::cleanCycle()
+	{
+		for (auto iter = mLoadedTextureMap.begin(); iter != mLoadedTextureMap.end();)
+		{
+			if (iter->second.unique())
+			{
+				LOG("Cleaning texture: %s " ,iter->first.c_str());
+				iter = mLoadedTextureMap.erase(iter);
+			}
+			else
+			{
+				++iter;
+			}
+		}
+	}
+
 	AssetManager::AssetManager()
 	{
 		

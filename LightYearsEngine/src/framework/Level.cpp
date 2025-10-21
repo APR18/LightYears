@@ -52,12 +52,12 @@ namespace LightYears
 	}
 	void Level::beginPlay()
 	{
-		LOG("Begin Play");
+		
 	}
 
 	void Level::update(float deltaTime)
 	{
-		LOG("Updating at framerate: %f", 1.f / deltaTime);
+		
 	}
 
 	Level::~Level()

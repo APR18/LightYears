@@ -2,7 +2,7 @@
 #define APPLICATION_HPP
 #include<SFML/Graphics.hpp>
 #include "framework/Core.h"
-#
+#include "AssetManager.h"
 namespace LightYears
 {
 	class Level;
@@ -23,6 +23,8 @@ namespace LightYears
 		sf::RenderWindow mWindow;
 		sf::Clock mClock;
 		shared<Level> mCurrentLevel;
+		sf::Clock mCleanCycleClock;
+		float mCleanCycleInterval;
 	};
 
 	template<typename LevelType>
