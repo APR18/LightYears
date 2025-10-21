@@ -2,6 +2,8 @@
 #include "framework/Level.h"
 #include "framework/Actor.h"
 #include "config.h"
+#include <algorithm>
+
 LightYears::Application* GetApplication()
 {
 	return new LightYears::GameApplication();

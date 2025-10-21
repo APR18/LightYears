@@ -1,5 +1,6 @@
 #include "framework/Actor.h"
 #include"framework/Core.h"
+#include "framework/AssetManager.h"
 
 namespace LightYears
 {
@@ -42,10 +43,12 @@ namespace LightYears
 	}
 	void Actor::setTexture(const std::string& texturePath)
 	{
-		mTexture.loadFromFile(texturePath);
-		mSprite.setTexture(mTexture);
-		int textureWidth = mTexture.getSize().x;
-		int textureHeight = mTexture.getSize().y;
+		mTexture = AssetManager::Get().loadTexture(texturePath);
+		if (!mTexture)
+			return;
+		mSprite.setTexture(*mTexture);
+		int textureWidth = mTexture->getSize().x;
+		int textureHeight = mTexture->getSize().y;
 		mSprite.setTextureRect(sf::IntRect(sf::Vector2i(), sf::Vector2i(textureWidth, textureHeight)));
 	}
 	void Actor::render(sf::RenderWindow& window)

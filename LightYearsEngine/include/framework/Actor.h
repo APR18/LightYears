@@ -2,6 +2,7 @@
 #define ACTOR_HPP
 #include<SFML/Graphics.hpp>
 #include "framework/Object.h"
+#include "framework/Core.h"
 namespace LightYears
 {
 	
@@ -21,7 +22,7 @@ namespace LightYears
 		bool mBeginPlay;
 		Level* mOwningLevel;
 		sf::Sprite mSprite;
-		sf::Texture mTexture;
+		shared <sf::Texture> mTexture;
 	};
 }
 
