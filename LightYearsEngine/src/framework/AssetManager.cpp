@@ -23,7 +23,7 @@ namespace LightYears
 		}
 		//create a new texture and store it in the map or dictionary
 		shared<sf::Texture> newTexture = std::make_shared<sf::Texture>();
-		if (newTexture->loadFromFile(filepath))
+		if (newTexture->loadFromFile(mAssetRootDir + filepath))
 		{
 			mLoadedTextureMap.insert({ filepath, newTexture });
 			return newTexture;
@@ -48,7 +48,15 @@ namespace LightYears
 		}
 	}
 
-	AssetManager::AssetManager()
+	void AssetManager::setAssetRootDir(const std::string& rootDir)
+	{
+		mAssetRootDir = rootDir;
+	}
+
+	
+
+	AssetManager::AssetManager():
+		mAssetRootDir{""}
 	{
 		
 	}

@@ -1,5 +1,6 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
+#include "player/PlayerSpaceship.h"
 namespace LightYears
 {
 	class Actor;
@@ -9,7 +10,7 @@ namespace LightYears
 		GameApplication();
 		virtual void update(float deltaTime) override;
 	private:
-		float counter;
-		weak<Actor> actorToDestroy;
+		
+		weak<PlayerSpaceship> testSpaceship;
 	};
 }

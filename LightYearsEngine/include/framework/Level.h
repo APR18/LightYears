@@ -2,9 +2,11 @@
 #define LEVEL_HPP
 #include "Core.h"
 #include<SFML/Graphics.hpp>
+
 namespace LightYears
 {
 	class Application;
+	class Spaceship;
 	class Actor;
 	class Level
 	{

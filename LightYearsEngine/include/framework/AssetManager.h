@@ -11,11 +11,13 @@ namespace LightYears
 		static AssetManager& Get();
 		shared<sf::Texture> loadTexture(const std::string& filepath);
 		void cleanCycle();
+		void setAssetRootDir(const std::string& rootDir);
 	protected:
 		AssetManager();
 	private:
 		static unique<AssetManager> assetmanager;
 		dictionary<std::string, shared<sf::Texture>> mLoadedTextureMap;
+		std::string mAssetRootDir;
 	};
 }
 #endif // !ASSET_MANAGER_HPP

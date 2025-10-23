@@ -9,7 +9,6 @@ namespace LightYears
 		mOwningLevel(owningLevel),
 		mSprite(),
 		mTexture()
-
 	{
 		setTexture(texturePath);
 	}
@@ -50,6 +49,7 @@ namespace LightYears
 		int textureWidth = mTexture->getSize().x;
 		int textureHeight = mTexture->getSize().y;
 		mSprite.setTextureRect(sf::IntRect(sf::Vector2i(), sf::Vector2i(textureWidth, textureHeight)));
+		centerPivot();
 	}
 	void Actor::render(sf::RenderWindow& window)
 	{
@@ -57,4 +57,49 @@ namespace LightYears
 			return;
 		window.draw(mSprite);
 	}
+	void Actor::setActorLocation(const sf::Vector2f newLoc)
+	{
+		mSprite.setPosition(newLoc);
+	}
+	void Actor::setActorRotation(float newRot)
+	{
+		mSprite.setRotation(newRot);
+	}
+
+	void Actor::addActorLocationOffset(const sf::Vector2f& offsetAmnt)
+	{
+		setActorLocation(getActorLocation() + offsetAmnt);
+	}
+
+	void Actor::addActorRotationOffset(float offsetAmnt)
+	{
+		setActorRotation(getActorRotation() + offsetAmnt);
+	}
+
+	sf::Vector2f Actor::getActorLocation()
+	{
+		return mSprite.getPosition();
+	}
+
+	float Actor::getActorRotation()
+	{
+		return mSprite.getRotation();
+	}
+
+	sf::Vector2f Actor::getActorforwardDirection()
+	{
+		return RotationToVector(getActorRotation());
+	}
+
+	sf::Vector2f Actor::getActorRightDirection()
+	{
+		return RotationToVector(getActorRotation() + 90.f);
+	}
+
+	void Actor::centerPivot()
+	{
+		sf::FloatRect bound = mSprite.getGlobalBounds();
+		mSprite.setOrigin(bound.width / 2, bound.height / 2);
+	}
+	
 }
