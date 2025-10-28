@@ -2,6 +2,7 @@
 #define PLAYER_SPACESHIP_HPP
 #include "framework/Level.h"
 #include "spaceship/spaceship.h"
+#include "framework/MathUtility.h"
 namespace LightYears
 {
 	class PlayerSpaceship:public Spaceship
@@ -14,9 +15,9 @@ namespace LightYears
 	private:
 		void handleInput();
 		void applyInput(float deltaTime);
+		void normalizeInput();
 		sf::Vector2f mMovement;
 		float mSpeed;
-
 	};
 }
 #endif // !PLAYER_SPACESHIP_HPP

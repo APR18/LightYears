@@ -1,5 +1,5 @@
 #include "framework/Level.h"
-#include "framework/Actor.h"
+
 namespace LightYears
 {
 	Level::Level(Application* owningApp):
@@ -63,6 +63,11 @@ namespace LightYears
 	Level::~Level()
 	{
 
+	}
+
+	sf::Vector2u Level::getwindowSize()
+	{
+		return mOwningApp->getWindowSize();
 	}
 
 }

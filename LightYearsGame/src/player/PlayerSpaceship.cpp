@@ -29,23 +29,29 @@ namespace LightYears
 		{
 			mMovement.y = -1.f;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{
-			mMovement.x = -1.f;
-		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
 			mMovement.y = 1.f;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			mMovement.x = -1.f;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			mMovement.x = 1.f;
 		}
+		normalizeInput();
 	}
 	void PlayerSpaceship::applyInput(float deltaTime)
 	{
 		setVelocity(mMovement * mSpeed);
 		mMovement.x = mMovement.y = 0;
+	}
+	void PlayerSpaceship::normalizeInput()
+	{
+		normalizeVector(mMovement);
+		LOG("move input: %f , %f", mMovement.x, mMovement.y);
 	}
 }
 

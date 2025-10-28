@@ -44,6 +44,11 @@ namespace LightYears
 		}
 	}
 
+	sf::Vector2u Application::getWindowSize() const
+	{
+		return mWindow.getSize();
+	}
+
 	void Application::updateInternal(float deltaTime)
 	{
 		update(deltaTime);

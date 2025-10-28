@@ -2,12 +2,11 @@
 #define LEVEL_HPP
 #include "Core.h"
 #include<SFML/Graphics.hpp>
-
+#include "framework/Actor.h"
+#include "Application.h"
 namespace LightYears
 {
-	class Application;
 	class Spaceship;
-	class Actor;
 	class Level
 	{
 	public:
@@ -18,6 +17,7 @@ namespace LightYears
 		virtual  ~Level();
 		template<typename ActorType>
 		weak<ActorType> spawnActor();
+		sf::Vector2u getwindowSize();
 
 	private:
 		Application* mOwningApp;

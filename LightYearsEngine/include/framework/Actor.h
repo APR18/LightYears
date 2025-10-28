@@ -28,6 +28,7 @@ namespace LightYears
 		float getActorRotation();
 		sf::Vector2f getActorforwardDirection();
 		sf::Vector2f getActorRightDirection();
+		sf::Vector2u getWindowSize() const;
 	private:
 		void centerPivot();
 		bool mBeginPlay;
