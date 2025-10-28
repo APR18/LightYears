@@ -4,9 +4,9 @@
 #include "framework/Object.h"
 #include "framework/Core.h"
 #include "MathUtility.h"
+#include "Level.h"
 namespace LightYears
 {
-	
 	class Level;
 	class Actor:public Object
 	{
@@ -28,7 +28,7 @@ namespace LightYears
 		float getActorRotation();
 		sf::Vector2f getActorforwardDirection();
 		sf::Vector2f getActorRightDirection();
-		sf::Vector2u getWindowSize() const;
+		sf::Vector2u getwindowSize() const;
 	private:
 		void centerPivot();
 		bool mBeginPlay;

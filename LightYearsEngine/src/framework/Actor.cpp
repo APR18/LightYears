@@ -96,6 +96,11 @@ namespace LightYears
 		return RotationToVector(getActorRotation() + 90.f);
 	}
 
+	sf::Vector2u Actor::getwindowSize() const
+	{
+		return mOwningLevel->getwindowSize();
+	}
+
 	void Actor::centerPivot()
 	{
 		sf::FloatRect bound = mSprite.getGlobalBounds();

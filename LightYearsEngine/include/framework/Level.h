@@ -7,6 +7,7 @@
 namespace LightYears
 {
 	class Spaceship;
+	class Actor;
 	class Level
 	{
 	public:

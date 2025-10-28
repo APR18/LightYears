@@ -41,12 +41,28 @@ namespace LightYears
 		{
 			mMovement.x = 1.f;
 		}
+		restrictPlayeronEdge();
 		normalizeInput();
+		
+		
 	}
 	void PlayerSpaceship::applyInput(float deltaTime)
 	{
 		setVelocity(mMovement * mSpeed);
 		mMovement.x = mMovement.y = 0;
+	}
+	void PlayerSpaceship::restrictPlayeronEdge()
+	{
+		sf::Vector2f actorLocation = getActorLocation();
+		if (actorLocation.x < 50 && mMovement.x == -1.f)
+			mMovement.x = 0.f;
+		if (actorLocation.x > (getwindowSize().x - 50) && mMovement.x == 1.f)
+			mMovement.x = 0.f;
+		if (actorLocation.y < 50 && mMovement.y == -1.f)
+			mMovement.y = 0.f;
+		if (actorLocation.y > (getwindowSize().y - 50) && mMovement.y == 1.f)
+			mMovement.y = 0.f;
+
 	}
 	void PlayerSpaceship::normalizeInput()
 	{

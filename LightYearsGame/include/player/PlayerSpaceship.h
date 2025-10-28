@@ -15,6 +15,7 @@ namespace LightYears
 	private:
 		void handleInput();
 		void applyInput(float deltaTime);
+		void restrictPlayeronEdge();
 		void normalizeInput();
 		sf::Vector2f mMovement;
 		float mSpeed;

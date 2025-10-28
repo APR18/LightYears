@@ -25,7 +25,7 @@ namespace LightYears
 		sf::Clock mClock;
 		shared<Level> mCurrentLevel;
 		sf::Clock mCleanCycleClock;
-		float mCleanCycleInterval
+		float mCleanCycleInterval;
 	};
 
 	template<typename LevelType>
