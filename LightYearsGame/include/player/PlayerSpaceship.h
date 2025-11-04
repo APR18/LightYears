@@ -5,6 +5,7 @@
 #include "framework/MathUtility.h"
 namespace LightYears
 {
+	class BulletShooter;
 	class PlayerSpaceship:public Spaceship
 	{
 	public:
@@ -17,8 +18,10 @@ namespace LightYears
 		void applyInput(float deltaTime);
 		void restrictPlayeronEdge();
 		void normalizeInput();
+		virtual void shoot() override;
 		sf::Vector2f mMovement;
 		float mSpeed;
+		unique<BulletShooter> mShooter;
 	};
 }
 #endif // !PLAYER_SPACESHIP_HPP

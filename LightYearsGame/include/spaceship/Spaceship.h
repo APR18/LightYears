@@ -12,6 +12,7 @@ namespace LightYears
 		virtual void update(float deltaTime) override;
 		void setVelocity(sf::Vector2f& newVelocity);
 		sf::Vector2f getVelocity() const;
+		virtual void shoot();
 	private:
 		sf::Vector2f mVeclocity;
 	};

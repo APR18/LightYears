@@ -1,11 +1,12 @@
 #include "player/PlayerSpaceship.h"
-
+#include "weapon/BulletShooter.h"
 namespace LightYears
 {
 	PlayerSpaceship::PlayerSpaceship(Level* owningWorld, const std::string& texturePath)
 		:Spaceship(owningWorld, texturePath),
 		mMovement{},
-		mSpeed{100.f}
+		mSpeed{100.f},
+		mShooter{new BulletShooter(this)}
 	{
 
 	}
@@ -43,6 +44,9 @@ namespace LightYears
 		}
 		restrictPlayeronEdge();
 		normalizeInput();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			shoot();
 		
 		
 	}
@@ -67,7 +71,12 @@ namespace LightYears
 	void PlayerSpaceship::normalizeInput()
 	{
 		normalizeVector(mMovement);
-		LOG("move input: %f , %f", mMovement.x, mMovement.y);
+		//LOG("move input: %f , %f", mMovement.x, mMovement.y);
+	}
+	void PlayerSpaceship::shoot()
+	{
+		if (mShooter)
+			mShooter->Shoot();
 	}
 }
 

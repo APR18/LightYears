@@ -23,4 +23,7 @@ namespace LightYears
 	{
 		return mVeclocity;
 	}
+	void Spaceship::shoot()
+	{
+	}
 }
