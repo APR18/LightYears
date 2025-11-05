@@ -14,7 +14,7 @@ namespace LightYears
 	{
 		return false;
 	}
-	Actor* Shooter::GetOwner() const
+	Actor* Shooter::getOwner() const
 	{
 		return mOwner;
 	}

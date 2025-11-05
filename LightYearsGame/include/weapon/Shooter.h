@@ -10,7 +10,7 @@ namespace LightYears
 
 		virtual bool canShoot() const;
 		virtual bool isOnCoolDown() const;
-		Actor* GetOwner() const;
+		Actor* getOwner() const;
 	protected:
 		Shooter(Actor* owner);
 	private:

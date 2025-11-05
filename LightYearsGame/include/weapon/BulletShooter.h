@@ -7,7 +7,7 @@ namespace LightYears
 	class BulletShooter : public Shooter
 	{
 	public:
-		BulletShooter(Actor* owner, float coolDownTime = 1.f);
+		BulletShooter(Actor* owner, float coolDownTime = 0.2f);
 		virtual bool isOnCoolDown() const override;
 	private:
 		virtual void shootImpl() override;

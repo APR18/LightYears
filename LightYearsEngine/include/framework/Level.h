@@ -16,8 +16,8 @@ namespace LightYears
 		void updateInternal(float deltaTime);
 		void render(sf::RenderWindow& window);
 		virtual  ~Level();
-		template<typename ActorType>
-		weak<ActorType> spawnActor();
+		template<typename ActorType, typename... Args>
+		weak<ActorType> spawnActor(Args... args);
 		sf::Vector2u getwindowSize();
 
 	private:
@@ -29,10 +29,10 @@ namespace LightYears
 		list<shared<Actor>> mPendingActors;
 	};
 
-	template<typename ActorType>
-	weak<ActorType> Level::spawnActor()
+	template<typename ActorType, typename... Args>
+	weak<ActorType> Level::spawnActor(Args... args)
 	{
-		shared<ActorType> newActor{ new ActorType{ this } };
+		shared<ActorType> newActor{ new ActorType{ this,args... } };
 		mPendingActors.push_back(newActor);
 		return newActor;
 	}

@@ -15,6 +15,7 @@ LightYears::GameApplication::GameApplication()
 	weak<Level> newWorld = loadLevel<Level>(); // loadLevel is a function in Application 
 	testSpaceship = newWorld.lock()->spawnActor<PlayerSpaceship>();
 	testSpaceship.lock()->setActorLocation(sf::Vector2f(300, 490));
+	testSpaceship.lock()->setActorRotation(-90);
 }
 
 void LightYears::GameApplication::update(float deltaTime)
