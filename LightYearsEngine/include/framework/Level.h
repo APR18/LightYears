@@ -19,7 +19,7 @@ namespace LightYears
 		template<typename ActorType, typename... Args>
 		weak<ActorType> spawnActor(Args... args);
 		sf::Vector2u getwindowSize();
-
+		void cleanCycle();
 	private:
 		Application* mOwningApp;
 		bool mBeginPlay;

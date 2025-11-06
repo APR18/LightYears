@@ -23,12 +23,14 @@ namespace LightYears
 		void setActorRotation(float newRot);
 		void addActorLocationOffset(const sf::Vector2f& offsetAmnt);
 		void addActorRotationOffset(float offsetAmnt);
-		sf::Vector2f getActorLocation();
-		float getActorRotation();
+		sf::Vector2f getActorLocation() const;
+		float getActorRotation() const;
 		sf::Vector2f getActorforwardDirection();
 		sf::Vector2f getActorRightDirection();
 		sf::Vector2u getwindowSize() const;
-		Level* getLevel() { return mOwningLevel; }
+		Level* getLevel() const;
+		bool isActorOutOfBounds() const;
+		sf::FloatRect getActorGlobalBounds() const;
 	private:
 		void centerPivot();
 		bool mBeginPlay;

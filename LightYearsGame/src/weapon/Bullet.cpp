@@ -22,9 +22,12 @@ namespace LightYears
 	{
 		Actor::update(deltaTime);
 		move(deltaTime);
+		if (isActorOutOfBounds())
+			destroy();
 	}
 	void Bullet::move(float deltaTime)
 	{
 		addActorLocationOffset(getActorforwardDirection() * mSpeed * deltaTime);
+
 	}
 }

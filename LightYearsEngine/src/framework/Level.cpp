@@ -32,15 +32,10 @@ namespace LightYears
 		// not incrementing here because the .erase returns the next iterator and in else we are incrementing it
 		for (auto iter = mActors.begin(); iter != mActors.end();)
 		{
-			if (iter->get()->isPendingDestroy())
-			{
-				iter = mActors.erase(iter);
-			}
-			else
-			{
-				iter->get()->updateInternal(deltaTime);
-				++iter;
-			}
+
+			iter->get()->updateInternal(deltaTime);
+			++iter;
+			
 		}
 
 		update(deltaTime);
@@ -68,6 +63,20 @@ namespace LightYears
 	sf::Vector2u Level::getwindowSize()
 	{
 		return mOwningApp->getWindowSize();
+	}
+	void Level::cleanCycle()
+	{
+		for (auto iter = mActors.begin(); iter != mActors.end();)
+		{
+			if (iter->get()->isPendingDestroy())
+			{
+				iter = mActors.erase(iter);
+			}
+			else
+			{
+				++iter;
+			}
+		}
 	}
 
 }

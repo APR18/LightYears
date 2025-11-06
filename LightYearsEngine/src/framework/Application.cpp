@@ -61,6 +61,8 @@ namespace LightYears
 		{
 			mCleanCycleClock.restart();
 			AssetManager::Get().cleanCycle();
+			if (mCurrentLevel)
+				mCurrentLevel->cleanCycle();
 		}
 
 	}

@@ -76,17 +76,17 @@ namespace LightYears
 		setActorRotation(getActorRotation() + offsetAmnt);
 	}
 
-	sf::Vector2f Actor::getActorLocation()
+	sf::Vector2f Actor::getActorLocation() const
 	{
 		return mSprite.getPosition();
 	}
 
-	float Actor::getActorRotation()
+	float Actor::getActorRotation() const
 	{
 		return mSprite.getRotation();
 	}
 
-	sf::Vector2f Actor::getActorforwardDirection()
+	sf::Vector2f Actor::getActorforwardDirection() 
 	{
 		return RotationToVector(getActorRotation());
 	}
@@ -101,10 +101,40 @@ namespace LightYears
 		return mOwningLevel->getwindowSize();
 	}
 
+	Level* Actor::getLevel() const
+	{
+		return mOwningLevel;
+	}
+
 	void Actor::centerPivot()
 	{
 		sf::FloatRect bound = mSprite.getGlobalBounds();
 		mSprite.setOrigin(bound.width / 2, bound.height / 2);
+	}
+	bool Actor::isActorOutOfBounds() const
+	{
+		float windowWidth = getLevel()->getwindowSize().x;
+		float windowHeight = getLevel()->getwindowSize().y;
+
+		float width = getActorGlobalBounds().width;
+		float height = getActorGlobalBounds().height;
+
+		sf::Vector2f actorPos = getActorLocation();
+		if (actorPos.x < -width)
+			return true;
+		if (actorPos.x > windowWidth + width)
+			return true;
+		if (actorPos.y < -height)
+			return true;
+		if (actorPos.y > windowHeight + height)
+			return true;
+		return false;
+
+	}
+
+	sf::FloatRect Actor::getActorGlobalBounds() const
+	{
+		return mSprite.getGlobalBounds();
 	}
 	
 }
