@@ -2,27 +2,62 @@
 add_library(${PROJECT_ENGINE_TARGET_NAME} STATIC
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Entrypoint.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/Entrypoint.cpp
+
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Application.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Application.cpp
+
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
+
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Level.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Level.cpp
+
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Actor.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Actor.cpp
+
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Object.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Object.cpp
+
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/AssetManager.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/AssetManager.cpp
+
 ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/MathUtility.h
 ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/MathUtility.cpp
+
+${CMAKE_CURRENT_SOURCE_DIR}/include/framework/PhysicsSystem.h
+${CMAKE_CURRENT_SOURCE_DIR}/src/framework/PhysicsSystem.cpp
 )
 target_include_directories(${PROJECT_ENGINE_TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# This creates a variable so the value is firstTutorial and variable name is PROJECT_TARGET_NAME
+
+include(FetchContent)
+
+set(SFML_LIB sfml)
+
+FetchContent_Declare(${SFML_LIB}
+GIT_REPOSITORY https://github.com/SFML/SFML
+GIT_TAG 2.6.0
+GIT_SHALLOW FALSE
+)
+
+FetchContent_MakeAvailable(${SFML_LIB})
+
+
 
 target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-graphics)
 target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-system)
 target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-window)
 target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC sfml-audio)
+
+set(BOX2D_LIB Box2D)
+FetchContent_declare(${BOX2D_LIB}
+GIT_REPOSITORY https://github.com/erincatto/box2d
+GIT_TAG v2.4.1
+GIT_SHALLOW FALSE
+)
+FetchContent_MakeAvailable(${BOX2D_LIB})
+target_link_libraries(${PROJECT_ENGINE_TARGET_NAME} PUBLIC box2d)
+
 #syntax 
 #function(funtion_name parameter1 parameter2)
 function(CopyDllFromLibToTarget LIB_NAME TARGET_NAME)
@@ -41,3 +76,4 @@ COPYDLLFROMLIBTOTARGET(sfml-graphics ${PROJECT_ENGINE_TARGET_NAME})
 COPYDLLFROMLIBTOTARGET(sfml-system ${PROJECT_ENGINE_TARGET_NAME})
 COPYDLLFROMLIBTOTARGET(sfml-audio ${PROJECT_ENGINE_TARGET_NAME})
 COPYDLLFROMLIBTOTARGET(sfml-window ${PROJECT_ENGINE_TARGET_NAME})
+COPYDLLFROMLIBTOTARGET(box2d ${PROJECT_ENGINE_TARGET_NAME})
