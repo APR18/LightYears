@@ -2,6 +2,7 @@
 #include "framework/Application.h"
 #include"framework/Core.h"
 #include"framework/Level.h"
+#include "framework/PhysicsSystem.h"
 namespace LightYears
 {
 	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style) :
@@ -57,6 +58,7 @@ namespace LightYears
 			mCurrentLevel->beginPlayInternal();
 			mCurrentLevel->updateInternal(deltaTime);
 		}
+		PhysicsSystem::get().step(deltaTime);
 		if (mCleanCycleClock.getElapsedTime().asSeconds()>=mCleanCycleInterval)
 		{
 			mCleanCycleClock.restart();

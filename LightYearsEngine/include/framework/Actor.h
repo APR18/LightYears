@@ -5,8 +5,10 @@
 #include "framework/Core.h"
 #include "MathUtility.h"
 #include "Level.h"
+class b2Body;
 namespace LightYears
 {
+
 	class Level;
 	class Actor:public Object
 	{
@@ -14,7 +16,7 @@ namespace LightYears
 		Actor(Level* owningLevel,const std::string& texturePath = "");
 		virtual ~Actor();
 		void beginPlayInternal();
-		void beginPlay();
+		virtual void beginPlay();
 		void updateInternal(float deltaTime);
 		virtual void update(float deltaTime);
 		void setTexture(const std::string& texturePath);
@@ -31,12 +33,18 @@ namespace LightYears
 		Level* getLevel() const;
 		bool isActorOutOfBounds() const;
 		sf::FloatRect getActorGlobalBounds() const;
+		void initializePhysics();
+		void unInitializePhysics();
+		void setEnablePhysics(bool enablePhysics);
 	private:
 		void centerPivot();
+		void updatePhysicsBodyTransform();
 		bool mBeginPlay;
 		Level* mOwningLevel;
 		sf::Sprite mSprite;
 		shared <sf::Texture> mTexture;
+		b2Body* mPhysicsbody;
+		bool mPhysicsEnabled;
 	};
 }
 

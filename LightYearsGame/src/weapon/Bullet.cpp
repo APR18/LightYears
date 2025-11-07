@@ -25,6 +25,11 @@ namespace LightYears
 		if (isActorOutOfBounds())
 			destroy();
 	}
+	void Bullet::beginPlay()
+	{
+		Actor::beginPlay();
+		setEnablePhysics(true);
+	}
 	void Bullet::move(float deltaTime)
 	{
 		addActorLocationOffset(getActorforwardDirection() * mSpeed * deltaTime);

@@ -1,6 +1,7 @@
 #include "spaceship/Spaceship.h"
 
 
+
 namespace LightYears
 {
 	Spaceship::Spaceship(Level* owningWorld, const std::string& texturePath)
@@ -25,5 +26,10 @@ namespace LightYears
 	}
 	void Spaceship::shoot()
 	{
+	}
+	void LightYears::Spaceship::beginPlay()
+	{
+		Actor::beginPlay();
+		setEnablePhysics(true);
 	}
 }

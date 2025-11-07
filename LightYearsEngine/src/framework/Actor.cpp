@@ -1,14 +1,17 @@
+#include <box2d/b2_body.h>
 #include "framework/Actor.h"
 #include"framework/Core.h"
 #include "framework/AssetManager.h"
-
+#include "framework/PhysicsSystem.h"
 namespace LightYears
 {
 	Actor::Actor(Level* owningLevel, const std::string& texturePath) :
 		mBeginPlay(false),
 		mOwningLevel(owningLevel),
 		mSprite(),
-		mTexture()
+		mTexture(),
+		mPhysicsbody{nullptr},
+		mPhysicsEnabled{false}
 	{
 		setTexture(texturePath);
 	}
@@ -64,6 +67,7 @@ namespace LightYears
 	void Actor::setActorRotation(float newRot)
 	{
 		mSprite.setRotation(newRot);
+
 	}
 
 	void Actor::addActorLocationOffset(const sf::Vector2f& offsetAmnt)
@@ -106,10 +110,42 @@ namespace LightYears
 		return mOwningLevel;
 	}
 
+	void Actor::initializePhysics()
+	{
+		if (!mPhysicsbody)
+			mPhysicsbody = PhysicsSystem::get().addListener(this);
+	}
+
+	void Actor::unInitializePhysics()
+	{
+		if (mPhysicsbody)
+			PhysicsSystem::get().removeListener(mPhysicsbody);
+	}
+
+
+	void Actor::setEnablePhysics(bool enablePhysics)
+	{
+		mPhysicsEnabled = enablePhysics;
+		if (mPhysicsEnabled)
+			initializePhysics();
+		else
+			unInitializePhysics();
+	}
+
 	void Actor::centerPivot()
 	{
 		sf::FloatRect bound = mSprite.getGlobalBounds();
 		mSprite.setOrigin(bound.width / 2, bound.height / 2);
+	}
+	void Actor::updatePhysicsBodyTransform()
+	{
+		if (mPhysicsbody)
+		{
+			float physicsScale = PhysicsSystem::get().getPhysicsScale();
+			b2Vec2 pos{ getActorLocation().x * physicsScale, getActorLocation().y * physicsScale };
+			float rotation = DegreesToRadians(getActorRotation());
+			mPhysicsbody->SetTransform(pos, rotation);
+		}
 	}
 	bool Actor::isActorOutOfBounds() const
 	{
@@ -136,5 +172,7 @@ namespace LightYears
 	{
 		return mSprite.getGlobalBounds();
 	}
+
+
 	
 }

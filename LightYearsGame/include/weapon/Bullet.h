@@ -10,6 +10,7 @@ namespace LightYears
 		void setSpeed(float newSpeed);
 		void setDamage(float newDamage);
 		virtual void update(float deltaTime) override;
+		virtual void beginPlay () override;
 	private:
 		void move(float deltaTime);
 		Actor* mOwner;

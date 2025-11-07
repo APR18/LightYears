@@ -13,6 +13,7 @@ namespace LightYears
 		void setVelocity(sf::Vector2f& newVelocity);
 		sf::Vector2f getVelocity() const;
 		virtual void shoot();
+		virtual void beginPlay() override;
 	private:
 		sf::Vector2f mVeclocity;
 	};
