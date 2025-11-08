@@ -63,11 +63,12 @@ namespace LightYears
 	void Actor::setActorLocation(const sf::Vector2f newLoc)
 	{
 		mSprite.setPosition(newLoc);
+		updatePhysicsBodyTransform();
 	}
 	void Actor::setActorRotation(float newRot)
 	{
 		mSprite.setRotation(newRot);
-
+		updatePhysicsBodyTransform();
 	}
 
 	void Actor::addActorLocationOffset(const sf::Vector2f& offsetAmnt)
@@ -130,6 +131,16 @@ namespace LightYears
 			initializePhysics();
 		else
 			unInitializePhysics();
+	}
+
+	void Actor::onActorBeginOverlap(Actor* other)
+	{
+		LOG("OVERLAPPED");
+	}
+
+	void Actor::onActorEndOverlap(Actor* other)
+	{
+		LOG("OVERLAP FINISHED");
 	}
 
 	void Actor::centerPivot()

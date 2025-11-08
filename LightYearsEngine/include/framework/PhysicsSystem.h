@@ -4,6 +4,12 @@
 #include <box2d/b2_world.h>
 namespace LightYears
 {
+	class PhysicsContactListener : public b2ContactListener
+	{
+	public:
+		virtual void BeginContact(b2Contact* contact);
+		virtual void EndContact(b2Contact* contact);
+	};
 	class Actor;
 	class PhysicsSystem
 	{
@@ -21,6 +27,7 @@ namespace LightYears
 		float mPhysicsScale;
 		int mVelocityIterations;
 		int mPositionIterations;
+		PhysicsContactListener mContactListener;
 	};
 }
 #endif // !PHYSICS_SYSTEM_HPP

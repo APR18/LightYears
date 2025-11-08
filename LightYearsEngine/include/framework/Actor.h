@@ -36,6 +36,8 @@ namespace LightYears
 		void initializePhysics();
 		void unInitializePhysics();
 		void setEnablePhysics(bool enablePhysics);
+		virtual void onActorBeginOverlap(Actor* other);
+		virtual void onActorEndOverlap(Actor* other);
 	private:
 		void centerPivot();
 		void updatePhysicsBodyTransform();
